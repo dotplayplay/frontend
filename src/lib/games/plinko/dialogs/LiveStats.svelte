@@ -1,5 +1,5 @@
 <script>
-   import {crashGame } from "../store";
+   import {plinkoGame } from "../store";
   import { browser } from "$app/environment";
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
   import useFormatter from "$lib/hook/formatter";
@@ -24,23 +24,21 @@
   );
   $: chartContainer = null;
   const { removeTrailingZeros, getSuffix } = useFormatter();
-  const { getStats, resetStats, recordGame } = useLiveStats(liveStats, "CRASH_LIVE_STATS");
+  const { getStats, resetStats, recordGame } = useLiveStats(liveStats, "PLINKO_LIVE_STATS");
   $: draggableContainer = null;
   $: stats = $liveStats || getStats();
   let chartInstance = null;
   let init = false;
   $: {
-    const game = $crashGame;
+    const game = $plinkoGame;
     if (game && !init) {
       init = true;
-      function handleBetResult({bets}) {
-        bets.forEach(bet => {
-          recordGame(bet.won, bet.wager, bet.profit, bet.currencyImage)
-        });
+      function handleBetResult(bet) {
+        recordGame(bet.odds >= 1, parseFloat(bet.amount), parseFloat(bet.profit), bet.currencyImage)
       }
-      game.on("user_bet_result", handleBetResult)
+      game.on("betEnd", handleBetResult)
       onDestroy(() => {
-        game.off("user_bet_result", handleBetResult)
+        game.off("betEnd", handleBetResult)
       });
     }
     if (chartContainer && stats) {
