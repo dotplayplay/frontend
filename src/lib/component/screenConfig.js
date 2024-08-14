@@ -16,6 +16,7 @@ export class ScreenScript{
         this.chatBoxExpand = 0
         this.smallLagos = "https://res.cloudinary.com/dxwhz3r81/image/upload/v1697848286/dpp-favicon-logo_j53rwc.jpg"
         this.largeLogos ="https://res.cloudinary.com/dxwhz3r81/image/upload/v1697848521/dpp-logowhite_lbifm7.png"
+        this.isMobileMenu = false
     }
     screenConfig(sreen){
         if(sreen  > 1600){

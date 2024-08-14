@@ -29,12 +29,10 @@ const setSettle = (()=>{
 
 </script>
 
-{#if resizeScreen > 621}
-<Sidebar />
-   <button on:click={setSettle} class="sc-FNXRL eFYxRV pc-sidebar-fold-change-btn {$screen.sideHasExpand === $screen.sideFold  && $screen.sideBar}" style="display: block;">
-      <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="sc-gsDKAQ hxODWG icon">
-         <use xlink:href="#icon_Tighten"></use>
-      </svg>
-   </button>
-{/if}
+<Sidebar {resizeScreen} />
+<button on:click={setSettle} class="sc-FNXRL eFYxRV pc-sidebar-fold-change-btn {$screen.sideHasExpand === $screen.sideFold  && $screen.sideBar}" style="display:{resizeScreen > 621 ? "block" : "none"};">
+   <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="sc-gsDKAQ hxODWG icon">
+      <use xlink:href="#icon_Tighten"></use>
+   </svg>
+</button>
 

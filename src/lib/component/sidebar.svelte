@@ -2,6 +2,8 @@
     import "../../styles/component/sidebar.css"
     import { screen } from '$lib/store/screen';
     import { page } from "$app/stores";
+    import MobileMenu from "./mobileMenu.svelte";
+    export let resizeScreen;
 
     $: route = $page?.url.pathname
 
@@ -9,19 +11,19 @@
         window.open(route, '_self', 'noopener noreferrer');
     }
 
-
 </script>
 
+{#if resizeScreen > 621}
 <div id="sidebar" class="sc-jHkVzv eTxQfM {$screen.sideHasExpand === $screen.sideFold ? "fold" : "unfold"} ">
     <div class="{$screen.sideHasExpand === $screen.sideFold ? "small-sidebar" : "large-sidebar"} hidden-scroll-y">
-        <div class=" {$screen.sideHasExpand === $screen.sideFold ? "sc-bilyIR ioXbGd" : "sc-uojGG hksQGj"}">
+        <div class="{$screen.sideHasExpand === $screen.sideFold ? "sc-bilyIR ioXbGd" : "sc-uojGG hksQGj"}">
             <div class="tab-more">
                 <div class="tab-item select small-icon">
                     <img alt="icon" src="{$screen.sideHasExpand === $screen.sideFold ? $screen.smallLagos : $screen.largeLogos}">
                 </div>
             </div>
         </div>
-
+    
         <button on:click={()=> goToExternalSite("/")} class="sc-iNGGcK knLCVT menu-item {route === "/"  ? "select" : ""} " >
             <div class="{$screen.sideHasExpand === $screen.sideFold ?  "menu-mobile" : "menu-pc"} ">
                 <img alt="menu-icon" src="https://static.nanogames.io/assets/home.e1cf89b4.png">
@@ -42,3 +44,6 @@
 
     </div>
 </div>
+
+{/if}
+

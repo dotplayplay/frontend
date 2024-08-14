@@ -2,13 +2,33 @@
     import "../../styles/component/navbar.css";
     import { screen } from "$lib/store/screen.js";
     import { theme } from '$lib/store/screen.js';
+    import MobileMenu from "./mobileMenu.svelte";
 
     const handleChatScren = (()=>{
         $screen.updateChatClass("clicked")
         screen.set($screen)
     })
 
+    const handleCloseMenu = (()=>{
+        $screen.isMobileMenu = false
+        screen.set($screen)
+    })
+
+    const handleMenuRoutes = ((event)=>{
+        window.open(event.detail, '_self', 'noopener noreferrer');
+        handleCloseMenu()
+    })
+
+    const handleOpenMenu = (()=>{
+        $screen.isMobileMenu = true
+        screen.set($screen)
+    })
+
 </script>
+
+{#if $screen.screen < 621 && $screen.isMobileMenu}
+    <MobileMenu on:close={handleCloseMenu} on:route={handleMenuRoutes}/>
+{/if}
 
 {#if $screen.screen > 621}
 <div id="header" class="sc-gVkuDy gAvMHL {$theme && "kCKrbU"}">
@@ -42,7 +62,7 @@
         <div class="logo-wrap">
             <img alt="logo" src="{$screen.smallLagos}">
         </div>
-        <button class="sc-bQtKYq cUTdQJ">
+        <button on:click={handleOpenMenu} class="sc-bQtKYq cUTdQJ">
             <span class="open-wrap">
                 <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="sc-gsDKAQ hxODWG icon">
                     <use xlink:href="#icon_Tighten"></use>
