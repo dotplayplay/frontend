@@ -2,6 +2,11 @@
     transition: all .2s linear;
     margin-top: 64px;
 }
+@media screen and (max-width: 620px) {
+    #root {
+        margin-top: 7.375rem;
+    }
+}
 .has-chat #root, .has-notice #root, .has-chat #header, .has-notice #header {
     margin-right: 360px;
 }
@@ -10,6 +15,9 @@
 }
 .side-fold #header {
     padding-left: 76px;
+}
+.side-fold #root {
+    margin-left: 76px;
 }
 @media screen and (max-width: 620px) {
     #root {
@@ -29,7 +37,9 @@
         display: none;
     }
 }
-
+.ttu {
+    text-transform: uppercase;
+}
 .hxODWG {
     width: 1.4em;
     height: 1.4em;
@@ -79,4 +89,12 @@
 }
 .eFYxRV.sidebar-fold {
     left: 62px;
+}
+.ePAxUv {
+    margin-top: 4rem;
+}
+@media screen and (max-width: 621px) {
+    .ePAxUv {
+        margin-top: 7.375rem;
+    }
 }

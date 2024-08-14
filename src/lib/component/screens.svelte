@@ -3,6 +3,7 @@
 import { browser } from "$app/environment";
 import { screen } from '$lib/store/screen';
 import { onMount } from "svelte";
+import Sidebar from "./sidebar.svelte";
 
 $: resizeScreen = 0
 browser && window.addEventListener("resize", () => {
@@ -21,14 +22,15 @@ $: $screen.newScreen = $screen.screen - $screen.sideHasExpand - $screen.chatBoxE
 
 const setSettle = (()=>{
    $screen.sideHasExpand === $screen.sideFold ? $screen.sideHasExpand = $screen.sideUnFold : $screen.sideHasExpand = $screen.sideFold
-   $screen.isSideOpen =! $screen.isSideOpen
-   document.body.className = `${$screen.theme} ${$screen.isSideOpen ? $screen.openCLass : $screen.closeClass} ${$screen.chatClass}`
+   $screen.isSideClass = $screen.isSideClass === $screen.openCLass ? $screen.closeClass : $screen.openCLass
+   document.body.className = `${$screen.theme} ${$screen.isSideClass} ${$screen.chatClass}`
    screen.set($screen)
 })
 
 </script>
 
-{#if resizeScreen > 612}
+{#if resizeScreen > 621}
+<Sidebar />
    <button on:click={setSettle} class="sc-FNXRL eFYxRV pc-sidebar-fold-change-btn {$screen.sideHasExpand === $screen.sideFold  && $screen.sideBar}" style="display: block;">
       <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="sc-gsDKAQ hxODWG icon">
          <use xlink:href="#icon_Tighten"></use>
