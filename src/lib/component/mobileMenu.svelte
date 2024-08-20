@@ -1,6 +1,4 @@
 <script>
-    import "../../styles/component/sidebar.css";
-    import { screen } from '$lib/store/screen';
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher()
 
@@ -8,11 +6,13 @@
 
 
 <div id="sidebar" class="sc-fXEqDS hZgDyO">
+
     <button on:click={()=> dispatch("close")} class="close-wrap">
         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="sc-gsDKAQ hxODWG icon close">
             <use xlink:href="#icon_Close"></use>
         </svg>
     </button>
+    
     <div id="sidebar" class="sc-xiLah beBixG">
         <div class="mobile-sidebar-top-tab">
             <div class="mobile-sidebar-top-tab">
@@ -35,3 +35,17 @@
     </div>
 </div>
 
+<style>
+.hksQGj {
+    margin-bottom: 0.875rem;
+    padding: 0px 1.125rem;
+    height: 64px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 50%;
+    position: relative;
+}
+</style>
